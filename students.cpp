@@ -10,7 +10,7 @@ using namespace std;
 
 // https://leetcode.com/discuss/interview-question/647667/Roblox-Karat-Interview
 map<pair<string, string>, vector<string>> getPairs(vector<pair<string, string>>& v) {
-	unordered_map<string, multiset<string>> m;
+	unordered_map<string, set<string>> m;
 	for (auto& p : v)
 		m[p.first].insert(p.second);
 
