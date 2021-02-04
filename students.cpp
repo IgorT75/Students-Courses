@@ -24,8 +24,11 @@ map<pair<string, string>, vector<string>> getPairs(vector<pair<string, string>>&
 			const auto& s2 = uniques[j];
 
 			vector<string> common;
-			auto it = std::set_intersection(m[s1].begin(), m[s1].end(), m[s2].begin(), m[s2].end(), std::back_inserter(common));
-			ret[std::make_pair(s1, s2)] = common;
+			const auto& shortVec = m[s1].size() >= m[s2].size() ? m[s2] : m[s1];
+			const auto& longVec  = m[s1].size() <  m[s2].size() ? m[s2] : m[s1];
+			auto it = std::set_intersection(shortVec.begin(), shortVec.end(), longVec.begin(), longVec.end(), 
+											std::back_inserter(common));
+			ret[{s1, s2}] = common;
 		}
 	}
 	return ret;
